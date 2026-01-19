@@ -1,0 +1,170 @@
+/* Component-specific styles */
+
+/* Editor Overrides */
+.editor-content,
+.editor-content textarea {
+  outline: none !important;
+}
+
+/* Markdown Styles */
+.md-content {
+  color: var(--text-primary);
+  line-height: 1.6;
+}
+
+.md-content h1,
+.md-content h2,
+.md-content h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  color: #fff;
+  border-bottom: 1px solid var(--glass-border);
+  padding-bottom: 0.3em;
+}
+
+.md-content h1 {
+  font-size: 1.8rem;
+}
+.md-content h2 {
+  font-size: 1.4rem;
+}
+.md-content h3 {
+  font-size: 1.1rem;
+  border-bottom: none;
+}
+
+.md-content p {
+  margin-bottom: 1.25em;
+  color: var(--text-secondary);
+}
+
+.md-content ul,
+.md-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.25em;
+  color: var(--text-secondary);
+}
+
+.md-content li {
+  margin-bottom: 0.25em;
+}
+
+/* Inline Code */
+.md-content :not(pre) > code {
+  background: rgba(255, 255, 255, 0.08); /* slight transparency */
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--accent-pink);
+  border: 1px solid var(--glass-border);
+}
+
+/* Enhanced Code Blocks */
+.md-content pre {
+  margin: 1.5em 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--glass-border);
+  background: #151515 !important;
+  overflow: hidden; /* Contain header */
+}
+
+/* The wrapper div from CustomCode component might not wrap pre directly if rehype handles it. 
+   Actually, CustomCode wraps the inner code. But rehype-highlight puts pre around.
+   We need to ensure the container style works. 
+   Adjusting CustomCode in App.tsx to handle the pre limitation or styling inner content. 
+   Wait, CustomCode implementation wraps children in div.code-block-container IF it replaces 'code'.
+   React-markdown passes 'code' component. 'pre' usually wraps 'code'. 
+   We often override 'pre' or 'code'. 
+   If overriding 'code', the pre bg might conflict.
+   Let's maintain the CSS for .code-block-container inside pre or replacing pre.
+*/
+
+.code-block-container {
+  display: flex;
+  flex-direction: column;
+  margin: -1em -1em; /* Negate default padding of pre if any, but highlight.js themes usually add padding to code */
+}
+
+.code-block-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  background: #1f1f2e;
+  border-bottom: 1px solid var(--glass-border);
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+}
+
+.lang-tag {
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: color 0.2s;
+}
+
+.copy-btn:hover {
+  color: var(--primary);
+}
+
+/* Adjust code block padding */
+.md-content pre code {
+  padding: 1rem !important;
+  display: block;
+  overflow-x: auto;
+  background: transparent !important; /* Let container bg show */
+}
+
+.md-content blockquote {
+  border-left: 4px solid var(--primary);
+  background: rgba(100, 108, 255, 0.1);
+  padding: 1em;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  margin: 1.5em 0;
+  color: var(--text-primary);
+  font-style: italic;
+}
+
+.md-content strong {
+  color: #fff;
+  font-weight: 600;
+}
+
+.md-content a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--accent-cyan);
+}
+.md-content a:hover {
+  border-bottom-style: solid;
+}
+
+/* Animations/Interactivity */
+.code-controls div {
+  transition: transform 0.2s;
+}
+.code-controls:hover div:nth-child(1) {
+  transform: scale(1.1);
+}
+.code-controls:hover div:nth-child(2) {
+  transform: scale(1.1);
+  transition-delay: 0.05s;
+}
+.code-controls:hover div:nth-child(3) {
+  transform: scale(1.1);
+  transition-delay: 0.1s;
+}
