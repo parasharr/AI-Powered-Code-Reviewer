@@ -74,7 +74,9 @@ function App() {
     setLoading(true);
     setReview("");
     try {
-      const response = await axios.post("http://localhost:3000/ai/get-review", {
+      const backendUrl =
+        import.meta.env.VITE_BACKEND_URL || "http://localhost:3000";
+      const response = await axios.post(`${backendUrl}/ai/get-review`, {
         code,
       });
       setReview(response.data);

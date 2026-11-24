@@ -6,7 +6,7 @@ const genAI = new GoogleGenAI({ apiKey: process.env.GOOGLE_GEMINI_API });
 async function generateContent(code) {
   try {
     const result = await genAI.models.generateContent({
-      model: "gemini-flash-latest",
+      model: "gemini-2.5-flash",
       contents: [
         {
           role: "user",
